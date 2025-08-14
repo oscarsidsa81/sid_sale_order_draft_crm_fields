@@ -7,7 +7,7 @@
             <field name="name">sid_sale_order_draft_crm_fields.tree</field>
             <field name="model">sale.order</field>
             <field name="priority" eval="17"/>
-            <field name="inherit_id" ref="	sale.view_quotation_tree"/>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
             <field name="arch" type="xml">
               <xpath expr="//tree[1]/field[@name='opportunity_group_id']" position="after">
                 <field name="code" optional="show"/>
@@ -36,7 +36,7 @@
             <field name="name">sid_sale_order_draft_crm_fields.form</field>
             <field name="model">sale.order</field>
             <field name="priority" eval="1000"/>
-            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='oportunity_names']" position="replace">
                     <xpath expr="//field[@name='opportunity_id']" position="move"/>
