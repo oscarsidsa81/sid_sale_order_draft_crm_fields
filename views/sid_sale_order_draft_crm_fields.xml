@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+
+        <!--SALE ORDER - PRESUPUESTOS 	model="ir.ui.view" 	sale.order.tree-->
+
+        <record id="sid_sale_order_draft_crm_fields.tree" model="ir.ui.view">
+            <field name="name">sid_sale_order_draft_crm_fields.tree</field>
+            <field name="model">sale.order</field>
+            <field name="priority" eval="17"/>
+            <field name="inherit_id" ref="	sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+              <xpath expr="//tree[1]/field[@name='opportunity_group_id']" position="after">
+                <field name="code" optional="show"/>
+              </xpath>
+              <xpath expr="//tree[1]/field[@name='opportunity_group_id']" position="before">
+                <xpath expr="//field[@name='name']" position="move"/>
+              </xpath>
+              <xpath expr="//tree[1]/field[@name='name']" position="attributes">
+                <attribute name="string">Nº Pedido</attribute>
+              </xpath>
+              <xpath expr="//tree[1]/field[@name='code']" position="attributes">
+                <attribute name="string">Código OP</attribute>
+              </xpath>
+              <xpath expr="//field[@name='code']" position="after">
+                <xpath expr="//field[@name='revision']" position="move"/>
+              </xpath>
+              <xpath expr="//tree[1]" position="attributes">
+                <attribute name="expand">1</attribute>
+              </xpath>
+            </field>
+        </record>
+
+        <!--SALE ORDER - FORM 	model="ir.ui.view" 	sale.order.form-->
+
+        <record id="sid_sale_order_draft_crm_fields.form" model="ir.ui.view">
+            <field name="name">sid_sale_order_draft_crm_fields.form</field>
+            <field name="model">sale.order</field>
+            <field name="priority" eval="1000"/>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='oportunity_names']" position="replace">
+                    <xpath expr="//field[@name='opportunity_id']" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='opportunity_id']" position="attributes">
+                    <attribute name="groups"></attribute>
+                </xpath>
+                <xpath expr="//field[@name='opportunity_id']" position="attributes">
+                    <attribute name="options">{'no_quick_create': True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--SALE ORDER - DRAFT SEARCH 	model="ir.ui.view" 	sale.order.search-->
+
+        <record id="sid_sale_order_draft_crm_fields.tree_search" model="ir.ui.view">
+            <field name="name">sid_sale_order_draft_crm_fields.search</field>
+            <field name="model">sale.order</field>
+            <field name="priority" eval="17"/>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="arch" type="xml">
+                      <xpath expr="//search[1]/field[@name='name']" position="after">
+                        <field name="opportunity_id" string="Oportunidad"/>
+                      </xpath>
+                      <xpath expr="//search[1]/field[@name='name']" position="after">
+                        <field name="quotations_id" string="Referencia Pedido/Contrato"/>
+                      </xpath>
+                      <xpath expr="//search[1]/field[@name='name']" position="after">
+                        <field name="opportunity_group_id" string="Grupo de Oportunidad"/>
+                      </xpath>
+                      <xpath expr="//search[1]/field[@name='opportunity_id']" position="after">
+                        <field name="code" string="Nº de oportunidad"/>
+                      </xpath>
+                      <xpath expr="//search[1]/field[@name='code']" position="after">
+                        <field name="tag_ids" string="Categorías de la Oportunidad"/>
+                      </xpath>
+            </field>
+         </record>
+    </data>
+</odoo>
